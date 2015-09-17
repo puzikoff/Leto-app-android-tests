@@ -6,8 +6,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
-import letoapp.AppManager;
-import letoapp.utilities.PropertyReader;
+import ru.letoapp.AppManager;
+import ru.letoapp.utilities.PropertyReader;
 
 public class SetUpForSuiteBase extends TestBase{	
 		

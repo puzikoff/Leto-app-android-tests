@@ -5,7 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import ru.letoapp.SetUpForSuiteBase;
-import letoapp.utilities.PropertyReader;
+import ru.letoapp.utilities.PropertyReader;
 
 public class DevelopTest extends SetUpForSuiteBase{		
 	String depositScreenTitle = "Вклад";

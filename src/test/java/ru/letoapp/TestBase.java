@@ -4,9 +4,9 @@ package ru.letoapp;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
-import letoapp.AppManager;
-import letoapp.utilities.PropertyReader;
-import letoapp.utilities.TestsHelper;
+import ru.letoapp.AppManager;
+import ru.letoapp.utilities.PropertyReader;
+import ru.letoapp.utilities.TestsHelper;
 
 public class TestBase {
 public static final Logger Log = Logger.getLogger("Test logger");

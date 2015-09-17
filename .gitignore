@@ -1,0 +1,16 @@
+log.txt
+*.apk
+.settings/
+.metadata
+*.irb-history
+test-output/
+target/
+bin/
+*.DS_Store
+lint.xml
+gen/
+out/
+src/main/javascript/node_modules
+src/main/javascript/*.log
+src/main/resources/*.apk
+Screenshots/

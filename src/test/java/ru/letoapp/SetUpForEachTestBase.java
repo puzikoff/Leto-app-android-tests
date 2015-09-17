@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
-import letoapp.AppManager;
-import letoapp.utilities.PropertyReader;
+import ru.letoapp.AppManager;
+import ru.letoapp.utilities.PropertyReader;
 
 public class SetUpForEachTestBase extends TestBase{
 	@BeforeSuite
