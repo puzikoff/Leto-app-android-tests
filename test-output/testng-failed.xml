@@ -3,20 +3,20 @@
 <suite name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="letoapp.tests.CanceledDepositScreensTest">
+      <class name="letoapp.tests.OpenLoanScreensTest">
         <methods>
+          <include name="tearDown"/>
+          <include name="openLoanTest"/>
+          <include name="openReducePaymentFromWhatIfScreenTest"/>
+          <include name="openReducePaymentServiceScreenTest"/>
+          <include name="openChangePaymentDateTest"/>
           <include name="setUpServer"/>
-          <include name="setUp"/>
-          <include name="changeDisplayNameTest"/>
-          <include name="depositOperationsScreenTest"/>
           <include name="auth"/>
-          <include name="depositScreenDepositTabVerify"/>
-          <include name="openDepositsListTest"/>
-          <include name="exit"/>
-          <include name="openDepositFromDepositsListTest"/>
-          <include name="depositScreeenInfoTabVerify"/>
+          <include name="openChangePaymentDateFromWhatIfScreenTest"/>
+          <include name="setUp"/>
+          <include name="tearDownServer"/>
         </methods>
-      </class> <!-- letoapp.tests.CanceledDepositScreensTest -->
+      </class> <!-- letoapp.tests.OpenLoanScreensTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
