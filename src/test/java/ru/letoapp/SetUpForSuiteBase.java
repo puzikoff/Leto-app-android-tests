@@ -1,7 +1,8 @@
 package ru.letoapp;
 
-
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
@@ -35,6 +36,14 @@ public class SetUpForSuiteBase extends TestBase{
 	    environoment = PropertyReader.getProperty("environoment");
 	    PropertyReader.init("/" + environoment + "Account.properties");
 	}		
+	
+	@AfterMethod 
+	public void takeScreenShotOnFailure(ITestResult testResult) 
+	{ 
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+			takeScreenshot(testResult.getMethod().getMethodName());			
+		} 
+	}
 	
 	@AfterClass
 	public void tearDown() throws Exception

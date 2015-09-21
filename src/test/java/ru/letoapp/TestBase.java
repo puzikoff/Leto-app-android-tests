@@ -6,6 +6,7 @@ import org.testng.Assert;
 
 import ru.letoapp.AppManager;
 import ru.letoapp.utilities.PropertyReader;
+import ru.letoapp.utilities.ScreenshotMaker;
 import ru.letoapp.utilities.TestsHelper;
 
 public class TestBase {
@@ -88,6 +89,16 @@ public static final Logger Log = Logger.getLogger("Test logger");
 		  if(appManager.getAuthScreen().isProtCodeCheckboxSelected()) {
 	        	appManager.getAuthScreen().setProtCodeCheckbox();
 	        }
+	}
+	
+	public void takeScreenshot() {
+		Log.info("Taking screenshot");
+		ScreenshotMaker.takeScreenshot(appManager.getDriver());
+	}
+	
+	public void takeScreenshot(String name) {
+		Log.info("Taking screenshot");
+		ScreenshotMaker.takeScreenshot(name, appManager.getDriver());
 	}
 	
 	//If screen title != title navUp click
