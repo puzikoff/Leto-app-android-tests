@@ -1,14 +1,19 @@
 package ru.letoapp;
 
+
+import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import ru.letoapp.AppManager;
 import ru.letoapp.utilities.PropertyReader;
+import ru.letoapp.utilities.BaseHTMLReporter;
+import ru.letoapp.utilities.ReportUtils;
 
 public class SetUpForSuiteBase extends TestBase{	
 		
@@ -37,13 +42,18 @@ public class SetUpForSuiteBase extends TestBase{
 	    PropertyReader.init("/" + environoment + "Account.properties");
 	}		
 	
-	@AfterMethod 
-	public void takeScreenShotOnFailure(ITestResult testResult) 
-	{ 
-		if (testResult.getStatus() == ITestResult.FAILURE) { 
-			takeScreenshot(testResult.getMethod().getMethodName());			
-		} 
+	@BeforeMethod
+	public void setContext(final ITestContext context) {
+		context.setAttribute(BaseHTMLReporter.DRIVER_ATTRIBUTE, appManager.getDriver());		
 	}
+	
+	/*@AfterMethod 
+	public void takeScreenShotOnFailure(ITestResult testResult) 
+	{ 		
+		if (testResult.getStatus() == ITestResult.FAILURE) { 
+					takeScreenshot(testResult.getMethod().getMethodName());			
+		}		
+	}*/
 	
 	@AfterClass
 	public void tearDown() throws Exception
