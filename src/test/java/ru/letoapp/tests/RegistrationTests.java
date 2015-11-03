@@ -1,17 +1,20 @@
 package ru.letoapp.tests;
 
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import ru.letoapp.SetUpForEachTestBase;
 import ru.letoapp.utilities.PropertyReader;
 
+
 public class RegistrationTests extends SetUpForEachTestBase{	
 	
 	@Test(priority=1, description = "REGISTRATION BY CARD. POSITIVE TEST")
-	public void registrationByCardPositiveTest() {		
+	public void registrationByCardPositiveTest() throws Exception {		
 		Log.info("REGISTRATION BY CARD POSITIVE TEST STARTS");		 
-		Log.info("Auth screen");
+		Log.info("Auth screen");		
+		Reporter.log("REGISTRATION BY CARD POSITIVE TEST STARTS");
 		chooseEnvironoment(environoment);
         appManager.getAuthScreen().registerBtnClick();        
         Log.info("Dbo screen");
@@ -75,16 +78,18 @@ public class RegistrationTests extends SetUpForEachTestBase{
         }
         Assert.assertFalse(appManager.getSecurityCodeScreen().isErrorPopupDisplayed(), "Security screen: Error popup displayed");
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");
 	}
 	
-	@Test(priority=1, description = "REGISTRATION BY ACCOUNT. POSITIVE TEST")
-	public void registrationByAccountPositiveTest() {
+	@Test(priority=2, description = "REGISTRATION BY ACCOUNT. POSITIVE TEST")
+	public void registrationByAccountPositiveTest() throws Exception {
 		Log.info("REGISTRATION BY ACCOUNT POSITIVE TEST STARTS");		 
-		Log.info("Auth screen");
+		Reporter.log("REGISTRATION BY ACCOUNT POSITIVE TEST START");
+		Log.info("Auth screen");		
 		chooseEnvironoment(environoment);     
         appManager.getAuthScreen().registerBtnClick();       
         Log.info("Dbo screen");
@@ -109,18 +114,27 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().confirmPassword(PropertyReader.getProperty("password"));        
         appManager.getSetPasswordScreen().nextBtnClick();        
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed");        
-        Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();      
+        Log.info("Set security code screen");        
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");        
         Assert.assertFalse(appManager.getSecurityCodeScreen().isErrorPopupDisplayed(), "Security code screen: Error popup displayed");
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");
 	}
 	
-	@Test(priority=2, description = "FORGOT PASSWORD. REGISTRATION BY CARD. POSITIVE TEST", dependsOnMethods = { "registrationByCardPositiveTest" })
-	public void forgotPswByCardPositiveTest() {
+	@Test(priority=2, description = "FORGOT PASSWORD. REGISTRATION BY CARD. POSITIVE TEST")
+	public void forgotPswByCardPositiveTest() throws Exception {
 		Log.info("FORGOT PASSWORD BY CARD POSITIVE TEST STARTS");
 		Log.info("Auth screen");		
 		chooseEnvironoment(environoment);
@@ -151,16 +165,25 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed");  
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");		
 	}
 	
-	@Test(priority=2, description = "FORGOT PASSWORD, REGISTRATION BY ACCOUNT. POSITIVE TEST", dependsOnMethods = { "registrationByAccountPositiveTest" })
-	public void forgotPswByAccountPositiveTest() {
+	@Test(priority=2, description = "FORGOT PASSWORD, REGISTRATION BY ACCOUNT. POSITIVE TEST")
+	public void forgotPswByAccountPositiveTest() throws Exception {
 		Log.info("FORGOT PASSWORD BY ACCOUNT POSITIVE TEST STARTS");
 		Log.info("Auth screen");		
 		chooseEnvironoment(environoment);
@@ -190,16 +213,25 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed"); 
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");		
 	}
 	
-	@Test(priority=2, description = "REGISTRATION BY ACCOUNT. FORGOT ACCOUNT NUMBER OR ACCES CODE. POSITIVE TEST", dependsOnMethods = { "registrationByAccountPositiveTest" })
-	public void forgotAccessOrAccountPositiveTest() {
+	@Test(priority=2, description = "REGISTRATION BY ACCOUNT. FORGOT ACCOUNT NUMBER OR ACCES CODE. POSITIVE TEST")
+	public void forgotAccessOrAccountPositiveTest() throws Exception {
 		Log.info("REGISTRATION. FORGOT ACCOUNT OR ACCES CODE POSITIVE TEST STARTS");
 		Log.info("Auth screen");
 		chooseEnvironoment(environoment);
@@ -229,16 +261,25 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed"); 
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");		
 	}
 	
-	@Test(priority=2, description = "REGISTRATION BY CARD. FORGOT CARD NUMBER OR ACCESS CODE. POSITIVE TEST", dependsOnMethods = { "registrationByCardPositiveTest" })
-	public void forgotAccessOrCardPositiveTest() {
+	@Test(priority=2, description = "REGISTRATION BY CARD. FORGOT CARD NUMBER OR ACCESS CODE. POSITIVE TEST")
+	public void forgotAccessOrCardPositiveTest() throws Exception {
 		Log.info("REGISTRATION. FORGOT CARD NUMBER OR ACCES CODE POSITIVE TEST STARTS");
 		Log.info("Auth screen");
 		chooseEnvironoment(environoment);
@@ -268,16 +309,25 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed"); 
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");		
 	}
 	
-	@Test(priority=2, description = "REGISTRATION BY CARD. INCORRECT LOGON. POSITIVE TEST", dependsOnMethods = { "registrationByCardPositiveTest" })
-	public void registrationByCardAfterIncorrectLogon() {
+	@Test(priority=2, description = "REGISTRATION BY CARD. INCORRECT LOGON. POSITIVE TEST")
+	public void registrationByCardAfterIncorrectLogon() throws Exception {
 		Log.info("REGISTRATION BY CARD. INCORRECT LOGON. POSITIVE TEST STARTs");
 		Log.info("Auth screen");
 		chooseEnvironoment(environoment);          
@@ -311,16 +361,25 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed"); 
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
         Log.info("END OF TEST");		
 	}
 	
-	@Test(priority=2, description = "REGISTRATION BY ACCOUNT. INCORRECT LOGON. POSITIVE TEST", dependsOnMethods = { "registrationByAccountPositiveTest" })
-	public void registrationByAccountAfterIncorrectLogon() {
+	@Test(priority=2, description = "REGISTRATION BY ACCOUNT. INCORRECT LOGON. POSITIVE TEST")
+	public void registrationByAccountAfterIncorrectLogon() throws Exception {
 		Log.info("REGISTRATION BY ACCOUNT. INCORRECT LOGON. POSITIVE TEST STARTS");
 		Log.info("Auth screen");
 		chooseEnvironoment(environoment);  
@@ -354,8 +413,17 @@ public class RegistrationTests extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed"); 
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");      
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();

@@ -11,7 +11,7 @@ public class ZeroWalletScreensTest extends SetUpForSuiteBase{
 String walletTitle = "Мой кошелёк";
 	
 	@Test(priority = 1)
-	public void auth(){		
+	public void auth() throws Exception{		
 		androidNewVersionPopupHandler();
 		greetingPopupHandler();
         appManager.getAuthScreen().verifyAuthScreen();        
@@ -24,20 +24,20 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 10, dependsOnMethods = { "auth" } )
-	public void openWalletTest(){				
+	public void openWalletTest() throws Exception{				
 		appManager.getDashboardScreen().openWallet();
 		Assert.assertFalse(appManager.getDashboardScreen().isErrorPopupDisplayed(), "Dashboard screen, open wallet: Error popup displayed");
         appManager.getWalletScreen().waitForVanishUpdateIndicator();
 	}
 	
 	@Test(priority = 20, dependsOnMethods = { "openWalletTest" })
-	public void walletScreenWalletTabVerify() {
+	public void walletScreenWalletTabVerify() throws Exception {
         appManager.getWalletScreen().verify();
         appManager.getWalletScreen().getWalletTab().verifyZeroWallet();
 	}
 	
 	@Test(priority = 30, dependsOnMethods = { "openWalletTest" })
-	public void walletOperationsTest() {
+	public void walletOperationsTest() throws Exception {
         appManager.getWalletScreen().getWalletTab().walletOperationsBtnClick();
         Assert.assertFalse(appManager.getWalletScreen().getWalletTab().isErrorPopupDisplayed(), "Wallet screen: Error opening wallet operations");
         appManager.getTimelineScreen().waitForVanishUpdateSpiner();
@@ -46,7 +46,7 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 40, dependsOnMethods = { "openWalletTest" })
-	public void openInLetoBankOfficesScreenTest() {
+	public void openInLetoBankOfficesScreenTest() throws Exception {
 		incorrectScreenHandler(walletTitle);		
         appManager.getWalletScreen().getWalletTab().inLetoBankOfficesClick();
         Assert.assertFalse(appManager.getWalletScreen().getWalletTab().isErrorPopupDisplayed(), "Wallet screen : error opening in leto bank offices screen");
@@ -54,14 +54,14 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 50, dependsOnMethods = { "openWalletTest" })
-	public void getQRCodeTest() {
+	public void getQRCodeTest() throws Exception {
 		appManager.getInLetoBankOfficesScreen().getQRBtnClick();
 		appManager.getInLetoBankOfficesScreen().waitForVanishLoadingIndicator();
 		Assert.assertFalse(appManager.getInLetoBankOfficesScreen().isLoadingErrorExist(), "In leto bank offices screen: get QR code loading error");
 	}
 	
 	@Test(priority = 60, dependsOnMethods = { "openWalletTest" })
-	public void openAnotherBankPaymentScreenTest() {
+	public void openAnotherBankPaymentScreenTest() throws Exception {
 		incorrectScreenHandler(walletTitle);	
 		appManager.getWalletScreen().getWalletTab().anotherBankPaymentClick();
         Assert.assertFalse(appManager.getWalletScreen().getWalletTab().isErrorPopupDisplayed(), "Wallet screen : error opening another bank payments screen");
@@ -69,7 +69,7 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 70, dependsOnMethods = { "openWalletTest" })
-	public void openPaymentSystemsTerminalsScreenTest() {
+	public void openPaymentSystemsTerminalsScreenTest() throws Exception {
 		incorrectScreenHandler(walletTitle);	
 		appManager.getWalletScreen().getWalletTab().paymentSystemsTerminalsClick();
         Assert.assertFalse(appManager.getWalletScreen().getWalletTab().isErrorPopupDisplayed(), "Wallet screen : error opening payments system terminals screen");
@@ -77,14 +77,14 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 80, dependsOnMethods = { "openWalletTest" })
-	public void walletScreeenInfoTabVerify() {
+	public void walletScreeenInfoTabVerify() throws Exception {
 		incorrectScreenHandler(walletTitle);	
 	    appManager.getWalletScreen().infoTabClick();
 	    appManager.getWalletScreen().getWalletInfoTab().verifyZeroWallet();    
 	}
 	
 	@Test(priority = 90, dependsOnMethods = { "openWalletTest" })
-	public void walletOperationsFromInfoTabTest() {
+	public void walletOperationsFromInfoTabTest() throws Exception {
         appManager.getWalletScreen().getWalletInfoTab().walletOperationsBtnClick();
         Assert.assertFalse(appManager.getWalletScreen().getWalletInfoTab().isErrorPopupDisplayed(), "Wallet screen: Error opening wallet operations");
         appManager.getTimelineScreen().waitForVanishUpdateSpiner();
@@ -93,7 +93,7 @@ String walletTitle = "Мой кошелёк";
 	}
 	
 	@Test(priority = 180, dependsOnMethods = { "openWalletTest" })
-	public void exit() {
+	public void exit() throws Exception {
 		incorrectScreenHandler(walletTitle);
         appManager.getDepositScreen().navUpBtnClick();
         appManager.getDashboardScreen().openDrawer();

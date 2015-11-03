@@ -1,7 +1,5 @@
 package ru.letoapp.tests;
 
-import java.io.IOException;
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,9 +10,11 @@ import ru.letoapp.utilities.CodeReader;
 public class RegistrationQuickTest extends SetUpForEachTestBase{
 	
 	@Test(priority=1, description = "REGISTRATION BY ACCOUNT TEST")
-	public void registrationByAccountTest() throws IOException, InterruptedException {
+	public void registrationByAccountTest() throws Exception {
 		Log.info("REGISTRATION BY ACCOUNT QUICK TEST STARTS");		 
 		Log.info("Auth screen");
+		androidNewVersionPopupHandler();
+		greetingPopupHandler();
 		chooseEnvironoment(environoment);     
         appManager.getAuthScreen().registerBtnClick();       
         Log.info("Dbo screen");
@@ -51,6 +51,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase{
         appManager.getSecurityCodeScreen().dismissBtnClick();      
         Assert.assertFalse(appManager.getSecurityCodeScreen().isErrorPopupDisplayed(), "Security code screen: Error popup displayed");
         Log.info("Dashboard screen");        
+        appManager.getDashboardScreen().waitForVanishUpdateSpiner();
         appManager.getDashboardScreen().verifyDashboardScreen();
         appManager.getDashboardScreen().openDrawer();
         appManager.getDashboardScreen().getDrawer().exitBtnClick();
@@ -58,7 +59,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase{
 	}
 	
 	@Test (priority=2, description = "AUTH AFTER REGISTRATION TEST", dependsOnMethods = { "registrationByAccountTest" })
-	public void authTest() {
+	public void authTest() throws Exception {
 		Log.info("AUTH QUICK TEST STARTS");
 		greetingPopupHandler();
 		if(environoment.equals("mtest")) {

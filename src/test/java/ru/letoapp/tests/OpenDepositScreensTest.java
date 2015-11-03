@@ -11,7 +11,7 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	String depositScreenTitle = "Вклад";
 
 	@Test(priority = 1)
-	public void auth(){		
+	public void auth() throws Exception{		
 		androidNewVersionPopupHandler();
 		greetingPopupHandler();
         appManager.getAuthScreen().verifyAuthScreen();        
@@ -24,20 +24,20 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 10, dependsOnMethods = { "auth" } )
-	public void openDepositTest(){				
+	public void openDepositTest() throws Exception{				
 		appManager.getDashboardScreen().openDeposit(PropertyReader.getProperty("openDepositName"));
 		Assert.assertFalse(appManager.getDashboardScreen().isErrorPopupDisplayed(), "Dashboard screen, open deposit: Error popup displayed");
         appManager.getDepositScreen().waitForVanishUpdateIndicator();
 	}
 	
 	@Test(priority = 20, dependsOnMethods = { "openDepositTest" })
-	public void depositScreenDepositTabVerify() {
+	public void depositScreenDepositTabVerify() throws Exception {
         appManager.getDepositScreen().verify();
         appManager.getDepositScreen().getDepositTab().verifyOpenDeposit();
 	}
 	
 	@Test(priority = 30, dependsOnMethods = { "openDepositTest" })	
-	public void changeDisplayNameTest() {
+	public void changeDisplayNameTest() throws Exception {
 		appManager.getDepositScreen().getEditDisplayName().editDisplayNameBtnClick();		
 		appManager.getDepositScreen().getEditDisplayName().editDisplayName(PropertyReader.getProperty("newDepositName"));
 		appManager.getDepositScreen().getEditDisplayName().editDisplayNamePopupNextBtnClick();
@@ -51,25 +51,25 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 			
 	@Test(priority = 40, dependsOnMethods = { "openDepositTest" })
-	public void unwrapDepositInfoTest()  {
+	public void unwrapDepositInfoTest() throws Exception  {
 		appManager.getDepositScreen().getDepositTab().unwrapDepositInfo();
 		appManager.getDepositScreen().getDepositTab().wrapDepositInfo();				
 	}
 	
 	@Test(priority = 43, dependsOnMethods = { "openDepositTest" })
-	public void unwrapDepositBreakdownTest() {
+	public void unwrapDepositBreakdownTest() throws Exception {
 		appManager.getDepositScreen().getDepositTab().unwrapDepositBreakdown();
 		appManager.getDepositScreen().getDepositTab().wrapDepositBreakdown();		
 	}
 	
 	@Test(priority = 44, dependsOnMethods = { "openDepositTest" })
-	public void whatIfScreenTest()  {
+	public void whatIfScreenTest() throws Exception  {
 		appManager.getDepositScreen().getDepositTab().whatIfBtnClick();
 		appManager.getWhatIfScreen().verifyDepositWhatIfScreen();		
 	}
 	
 	@Test(priority = 50, dependsOnMethods = { "openDepositTest" })
-	public void openInLetoBankOfficesScreenTest() {
+	public void openInLetoBankOfficesScreenTest() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);		
         appManager.getDepositScreen().getDepositTab().inLetoBankOfficesClick();
         Assert.assertFalse(appManager.getDepositScreen().getDepositTab().isErrorPopupDisplayed(), "Deposit screen : error opening in leto bank offices screen");
@@ -77,14 +77,14 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 60, dependsOnMethods = { "openDepositTest" })
-	public void getQRCodeTest() {
+	public void getQRCodeTest() throws Exception {
 		appManager.getInLetoBankOfficesScreen().getQRBtnClick();
 		appManager.getInLetoBankOfficesScreen().waitForVanishLoadingIndicator();
 		Assert.assertFalse(appManager.getInLetoBankOfficesScreen().isLoadingErrorExist(), "In leto bank offices screen: get QR code loading error");
 	}
 	
 	@Test(priority = 70, dependsOnMethods = { "openDepositTest" })
-	public void openAnotherBankPaymentScreenTest() {
+	public void openAnotherBankPaymentScreenTest() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);	
 		appManager.getDepositScreen().getDepositTab().anotherBankPaymentClick();
         Assert.assertFalse(appManager.getDepositScreen().getDepositTab().isErrorPopupDisplayed(), "CDeposit screen : error opening another bank payments screen");
@@ -92,7 +92,7 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 80, dependsOnMethods = { "openDepositTest" })
-	public void openPaymentSystemsTerminalsScreenTest() {
+	public void openPaymentSystemsTerminalsScreenTest() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);	
 		appManager.getDepositScreen().getDepositTab().paymentSystemsTerminalsClick();
         Assert.assertFalse(appManager.getDepositScreen().getDepositTab().isErrorPopupDisplayed(), "Deposit screen : error opening payments system terminals screen");
@@ -100,14 +100,14 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 	    
 	@Test(priority = 90, dependsOnMethods = { "openDepositTest" })
-	public void depositScreeenInfoTabVerify() {
+	public void depositScreeenInfoTabVerify() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);	
 	    appManager.getDepositScreen().depositInfoTabClick();
 	    appManager.getDepositScreen().getDepositInfoTab().verifyOpenDeposit();    
 	}
 	
 	@Test(priority = 100, dependsOnMethods = { "openDepositTest" })
-	public void depositOperationsScreenTest() {
+	public void depositOperationsScreenTest() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);
         appManager.getDepositScreen().getDepositInfoTab().depositOperationsClick();
         Assert.assertFalse(appManager.getDepositScreen().getDepositInfoTab().isErrorPopupDisplayed(), "Deposit screen: Error opening card operations");
@@ -117,7 +117,7 @@ public class OpenDepositScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 180, dependsOnMethods = { "openDepositTest" })
-	public void exit() {
+	public void exit() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);
         appManager.getDepositScreen().navUpBtnClick();
         appManager.getDashboardScreen().openDrawer();

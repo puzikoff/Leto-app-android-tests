@@ -10,7 +10,7 @@ public class ClosedDepositScreensTest extends SetUpForSuiteBase{
 String depositScreenTitle = "Вклад";
 	
 	@Test(priority = 1)
-	public void auth(){		
+	public void auth() throws Exception{		
 		androidNewVersionPopupHandler();
 		greetingPopupHandler();
         appManager.getAuthScreen().verifyAuthScreen();        
@@ -23,27 +23,27 @@ String depositScreenTitle = "Вклад";
 	}
 	
 	@Test(priority = 10, dependsOnMethods = { "auth" } )
-	public void openDepositsListTest(){				
+	public void openDepositsListTest() throws Exception{				
 		appManager.getDashboardScreen().depositsListBtnClick();
 		appManager.getDepositsListScreen().waitForVanishUpdateSpiner();
 		appManager.getDepositsListScreen().verify();
 	}
 	
 	@Test(priority = 20, dependsOnMethods = { "auth" } )
-	public void openDepositFromDepositsListTest(){				
+	public void openDepositFromDepositsListTest() throws Exception{				
 		appManager.getDepositsListScreen().openDeposit(PropertyReader.getProperty("closedDepositName"));
 		Assert.assertFalse(appManager.getDepositsListScreen().isErrorPopupDisplayed(), "Deposits list, open deposit: Error popup displayed");
         appManager.getDepositScreen().waitForVanishUpdateIndicator();
 	}
 	
 	@Test(priority = 30, dependsOnMethods = { "openDepositFromDepositsListTest" })
-	public void depositScreenDepositTabVerify() {
+	public void depositScreenDepositTabVerify() throws Exception {
         appManager.getDepositScreen().verify();
         appManager.getDepositScreen().getDepositTab().verifyClosedDeposit();
 	}
 	
 	@Test(priority = 40, dependsOnMethods = { "openDepositFromDepositsListTest" })	
-	public void changeDisplayNameTest() {
+	public void changeDisplayNameTest() throws Exception {
 		appManager.getDepositScreen().getEditDisplayName().editDisplayNameBtnClick();		
 		appManager.getDepositScreen().getEditDisplayName().editDisplayName(PropertyReader.getProperty("newDepositName"));
 		appManager.getDepositScreen().getEditDisplayName().editDisplayNamePopupNextBtnClick();
@@ -57,20 +57,20 @@ String depositScreenTitle = "Вклад";
 	}
 	
 	@Test(priority = 43, dependsOnMethods = { "openDepositFromDepositsListTest" })
-	public void unwrapDepositBreakdownTest() {
+	public void unwrapDepositBreakdownTest() throws Exception {
 		appManager.getDepositScreen().getDepositTab().unwrapDepositBreakdown();
 		appManager.getDepositScreen().getDepositTab().wrapDepositBreakdown();		
 	}
 		    
 	@Test(priority = 50, dependsOnMethods = { "openDepositFromDepositsListTest" })
-	public void depositScreeenInfoTabVerify() {
+	public void depositScreeenInfoTabVerify() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);	
 	    appManager.getDepositScreen().depositInfoTabClick();
 	    appManager.getDepositScreen().getDepositInfoTab().verifyClosedDeposit();    
 	}
 	
 	@Test(priority = 60, dependsOnMethods = { "openDepositFromDepositsListTest" })
-	public void depositOperationsScreenTest() {
+	public void depositOperationsScreenTest() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);
         appManager.getDepositScreen().getDepositInfoTab().depositOperationsClick();
         Assert.assertFalse(appManager.getDepositScreen().getDepositInfoTab().isErrorPopupDisplayed(), "Deposit screen: Error opening card operations");
@@ -80,7 +80,7 @@ String depositScreenTitle = "Вклад";
 	}
 	
 	@Test(priority = 70, dependsOnMethods = { "openDepositFromDepositsListTest" })
-	public void exit() {
+	public void exit() throws Exception {
 		incorrectScreenHandler(depositScreenTitle);
         appManager.getDepositScreen().navUpBtnClick();
         appManager.getDepositsListScreen().navUpBtnClick();

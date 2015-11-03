@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Contracts screens test suite" parallel="none">
-  <test name="Card screens test">
+ <test name="Card screens test">
     <classes>      
       <class name="ru.letoapp.tests.CardScreensTest"/>      
     </classes>
-  </test>
+  </test> 
   <test name="Open Loan screens test">
     <classes>     
       <class name="ru.letoapp.tests.OpenLoanScreensTest"/>
     </classes>
   </test>
-  <test name="Preclosed Loan screens test">
+ <!-- <test name="Preclosed Loan screens test">
     <classes>     
       <class name="ru.letoapp.tests.PreclosedLoanScreensTest"/>
     </classes>
-  </test>
+  </test> -->
   <test name="Open deposit screens test">
     <classes>     
       <class name="ru.letoapp.tests.OpenDepositScreensTest"/>
@@ -26,19 +26,19 @@
       <class name="ru.letoapp.tests.ClosedDepositScreensTest"/>
     </classes>
   </test>
-  <test name="Canceled deposit screens test">
+<!--   <test name="Canceled deposit screens test">
     <classes>     
       <class name="ru.letoapp.tests.CanceledDepositScreensTest"/>
     </classes>
-  </test>
-  <test name="Wallet with not zero amount screens test">
+  </test> -->
+ <test name="Wallet with not zero amount screens test">
     <classes>     
       <class name="ru.letoapp.tests.NotZeroWalletScreensTest"/>
     </classes>
-  </test>
+  </test> 
   <test name="Wallet with zero amount screens test">
     <classes>     
       <class name="ru.letoapp.tests.ZeroWalletScreensTest"/>
     </classes>
-  </test>
+  </test>  
 </suite> 

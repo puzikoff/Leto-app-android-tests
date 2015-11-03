@@ -13,7 +13,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	String paymentDate;
 	
 	@Test(priority = 1)
-	public void auth() {
+	public void auth() throws Exception {
 		androidNewVersionPopupHandler();
 		greetingPopupHandler();
         appManager.getAuthScreen().verifyAuthScreen();  
@@ -26,21 +26,21 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 2, dependsOnMethods = { "auth" })
-	public void openLoanTest() {		       
+	public void openLoanTest() throws Exception {		       
         appManager.getDashboardScreen().openLoan(PropertyReader.getProperty("openLoanName"));
         Assert.assertFalse(appManager.getDashboardScreen().isErrorPopupDisplayed(), "Dashboard screen, open loan: Error popup displayed");
         appManager.getLoanScreen().waitForVanishUpdateIndicator();
 	}
 	
 	@Test(priority = 3, dependsOnMethods = { "openLoanTest" })
-	public void loanScreenPaymentTabVerify() {
+	public void loanScreenPaymentTabVerify() throws Exception {
         appManager.getLoanScreen().verify();
         appManager.getLoanScreen().getPaymentTab().verifyOpenLoan();
         paymentDate = appManager.getLoanScreen().getPaymentTab().getPaymentDate();
 	}
 	
 	@Test(priority = 5, dependsOnMethods = { "openLoanTest" })
-	public void changeDisplayNameTest() {
+	public void changeDisplayNameTest() throws Exception {
 		appManager.getLoanScreen().getEditDisplayName().editDisplayNameBtnClick();		
 		appManager.getLoanScreen().getEditDisplayName().editDisplayName(PropertyReader.getProperty("newLoanName"));
 		appManager.getLoanScreen().getEditDisplayName().editDisplayNamePopupNextBtnClick();
@@ -54,14 +54,14 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 10, dependsOnMethods = { "openLoanTest" })
-	public void openPaymentScheduleTest() {
+	public void openPaymentScheduleTest() throws Exception {
 		appManager.getLoanScreen().getPaymentTab().paymentScheduleClick();
 		Assert.assertFalse(appManager.getLoanScreen().getPaymentTab().isErrorPopupDisplayed(), "Loan screen, payment tab: Error openning payments schedule");
 	    appManager.getPaymentsScheduleScreen().verify();	    
 	}
 	
 	@Test(priority = 30, dependsOnMethods = { "openLoanTest" })
-	public void openWhatIfScreenTest() {
+	public void openWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);		
 		appManager.getLoanScreen().getPaymentTab().whatIfClick();
 		Assert.assertFalse(appManager.getLoanScreen().getPaymentTab().isErrorPopupDisplayed(), "Loan screen, payment tab: Error openning what if screen");
@@ -69,7 +69,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 32, dependsOnMethods = { "openLoanTest" })
-	public void openPartRepaymentScreenTest() {
+	public void openPartRepaymentScreenTest() throws Exception {
 		appManager.getWhatIfScreen().payMoreClick();		
 		Assert.assertFalse(appManager.getWhatIfScreen().isErrorPopupDisplayed(), "Loan screen, what if screen: error opening part repayment screen");
 		appManager.getPartRepaymentScreen().topUpMethodsListClick();
@@ -86,7 +86,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 33, dependsOnMethods = { "openLoanTest" })
-	public void openFullRepaymentTest() {
+	public void openFullRepaymentTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);	    
 		appManager.getWhatIfScreen().payMoreWidgetClick();
         appManager.getWhatIfScreen().payAllClick();       
@@ -101,7 +101,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 34, dependsOnMethods = { "openLoanTest" })
-	public void openSkipPaymentFromWhatIfScreenTest() {
+	public void openSkipPaymentFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().payAllWidgetClick();       
         appManager.getWhatIfScreen().skipPaymentClick();     
@@ -110,7 +110,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 35, dependsOnMethods = { "openLoanTest" })
-	public void openReducePaymentFromWhatIfScreenTest() {
+	public void openReducePaymentFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().skipPaymentWidgetClick();       
         appManager.getWhatIfScreen().reducePaymentClick();        
@@ -119,7 +119,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}       
 	
 	@Test(priority = 36, dependsOnMethods = { "openLoanTest" })
-	public void openChangePaymentDateFromWhatIfScreenTest() {
+	public void openChangePaymentDateFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().reducePaymentWidgetClick();       
 		appManager.getWhatIfScreen().changePayDateClick();        
@@ -131,7 +131,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 		
 	@Test(priority = 40, dependsOnMethods = { "openLoanTest" })
-	public void openInLetoBankOfficesScreenTest() {
+	public void openInLetoBankOfficesScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		incorrectScreenHandler(loanScreenTitle);	
         appManager.getLoanScreen().getPaymentTab().inLetoBankOfficesClick();
@@ -140,14 +140,14 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 45, dependsOnMethods = { "openLoanTest" })
-	public void getQRCodeTest() {
+	public void getQRCodeTest() throws Exception {
 		appManager.getInLetoBankOfficesScreen().getQRBtnClick();
 		appManager.getInLetoBankOfficesScreen().waitForVanishLoadingIndicator();
 		Assert.assertFalse(appManager.getInLetoBankOfficesScreen().isLoadingErrorExist(), "In leto bank offices screen: get QR code loading error");
 	}
 	
 	@Test(priority = 50, dependsOnMethods = { "openLoanTest" })
-	public void openAnotherBankPaymentScreenTest() {
+	public void openAnotherBankPaymentScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
         appManager.getLoanScreen().getPaymentTab().anotherBankPaymentClick();
         Assert.assertFalse(appManager.getLoanScreen().getPaymentTab().isErrorPopupDisplayed(), "Loan screen : error opening another bank payments screen");
@@ -155,7 +155,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 60, dependsOnMethods = { "openLoanTest" })
-	public void openPaymentSystemsTerminalsScreenTest() {
+	public void openPaymentSystemsTerminalsScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
         appManager.getLoanScreen().getPaymentTab().paymentSystemsTerminalsClick();
         Assert.assertFalse(appManager.getLoanScreen().getPaymentTab().isErrorPopupDisplayed(), "Loan screen : error opening payments system terminals screen");
@@ -163,21 +163,21 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
         
 	@Test(priority = 70, dependsOnMethods = { "openLoanTest" })
-	public void loanScreenInfoTabVerify() {        
+	public void loanScreenInfoTabVerify() throws Exception {        
 		incorrectScreenHandler(loanScreenTitle);	        
         appManager.getLoanScreen().infoTabClick();
         appManager.getLoanScreen().getLoanInfoTab().verify();
 	}
 	
 	@Test(priority = 75, dependsOnMethods = { "openLoanTest" })
-	public void openContractScreenTest() {        
+	public void openContractScreenTest() throws Exception {        
         appManager.getLoanScreen().getLoanInfoTab().contractBtnClick();
         Assert.assertFalse(appManager.getLoanScreen().getLoanInfoTab().isErrorPopupDisplayed(), "Loan screen : error opening contract screen");
         appManager.getLoanContractScreen().verify();
 	}
 	
 	@Test(priority = 80, dependsOnMethods = { "openLoanTest" })
-	public void openLoanOperationScreenTest() {
+	public void openLoanOperationScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	    
         appManager.getLoanScreen().getLoanInfoTab().creditOperationsBtnClick();
         Assert.assertFalse(appManager.getLoanScreen().getLoanInfoTab().isErrorPopupDisplayed(), "Loan screen : error opening loan operations  screen");
@@ -187,13 +187,13 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 90, dependsOnMethods = { "openLoanTest" })
-	public void openInsuranceScreenTest() {
+	public void openInsuranceScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);    
 		appManager.getLoanScreen().getLoanInfoTab().insuranceBtnClick();	
 	}
 	
 	@Test(priority = 100, dependsOnMethods = { "openLoanTest" })
-	public void openPaymentsScheduleScreenFromInfoTabTest() {
+	public void openPaymentsScheduleScreenFromInfoTabTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);    
         appManager.getLoanScreen().getLoanInfoTab().paymentsScheduleBtnClick();
         Assert.assertFalse(appManager.getLoanScreen().getLoanInfoTab().isErrorPopupDisplayed(), "Loan screen, payment tab: Error openning payments schedule");
@@ -201,21 +201,21 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 110, dependsOnMethods = { "openLoanTest" })
-	public void loanScreenManagementTabVerify() {
+	public void loanScreenManagementTabVerify() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);   
         appManager.getLoanScreen().managementTabClick();
         appManager.getLoanScreen().getLoanManagementTab().verify();
 	}
 	
 	@Test(priority = 120, dependsOnMethods = { "openLoanTest" })
-	public void openSkipPaymentTest() {		
+	public void openSkipPaymentTest() throws Exception {		
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Пропускаю платёж");
         Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error openning skip paymnet");
         appManager.getSkipPaymentScreen().verify();
 	}
 	
 	@Test(priority = 130, dependsOnMethods = { "openLoanTest" })
-	public void openChangePaymentDateTest() {
+	public void openChangePaymentDateTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Меняю дату платежа");
 		Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error openning change payment date");       
@@ -227,7 +227,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 140, dependsOnMethods = { "openLoanTest" })
-	public void openReducePaymentServiceScreenTest() {
+	public void openReducePaymentServiceScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Уменьшаю платёж");        
         Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error opening reduce payment");
@@ -235,7 +235,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 150, dependsOnMethods = { "openLoanTest" })
-	public void openEarlyRepaymentScreenTest() {
+	public void openEarlyRepaymentScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Досрочное погашение");        
         Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error openning early repayment");
@@ -243,7 +243,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 160, dependsOnMethods = { "openLoanTest" })
-	public void openConnectingServicesScreenTest() {
+	public void openConnectingServicesScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);
         appManager.getLoanScreen().getLoanManagementTab().connectingServicesHistoryBtnClick();
         Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error opennig connection services history");
@@ -253,7 +253,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
     }
 	
 	@Test(priority = 180, dependsOnMethods = { "openLoanTest" })
-	public void exit() {
+	public void exit() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);
         appManager.getLoanScreen().navUpBtnClick();
         appManager.getDashboardScreen().openDrawer();

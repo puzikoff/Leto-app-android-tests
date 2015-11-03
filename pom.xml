@@ -25,6 +25,10 @@
                             <org.uncommons.reportng.escape-output>false</org.uncommons.reportng.escape-output>
                             <org.uncommons.reportng.title>Test Results</org.uncommons.reportng.title>
                         </systemPropertyVariables>
+                        <encoding>UTF-8</encoding>
+              			<inputEncoding>UTF-8</inputEncoding>
+              			<outputEncoding>UTF-8</outputEncoding>
+              			<argLine>-Xms256m -Xmx512m -XX:MaxPermSize=128m -ea -Dfile.encoding=UTF-8</argLine>
      				    <properties>     
      				        <property>
                                 <name>usedefaultlisteners</name>
@@ -34,14 +38,13 @@
                         		<name>listener</name>
                         		<value>ru.letoapp.utilities.BaseHTMLReporter</value>
                     		</property>
-                		</properties> 
-       				    <encoding>UTF-8</encoding>
-       		<!-- 		    <suiteXmlFiles>
+                		</properties>       				    
+       		  		    <!-- <suiteXmlFiles>
            					<suiteXmlFile>contracts_screens_testsuite.xml</suiteXmlFile>
-         				</suiteXmlFiles> -->
-         				   <suiteXmlFiles>
+         				</suiteXmlFiles> --> 
+          				<suiteXmlFiles> 
            					<suiteXmlFile>testng.xml</suiteXmlFile>
-         				</suiteXmlFiles>                 	     				
+         				</suiteXmlFiles>                    	     				
 			       </configuration>    				
      			</plugin>
 				<plugin>
@@ -106,7 +109,7 @@
 			</exclusion>
         </exclusions>   
     </dependency>
-	<dependency>
+<!-- 	<dependency>
 		<groupId>com.google.android</groupId>
 		<artifactId>android</artifactId>
 		<version>4.1.1.4</version>
@@ -115,6 +118,6 @@
 		<groupId>org.apache.httpcomponents</groupId>
 		<artifactId>httpclient</artifactId>
 		<version>4.5</version>
-	</dependency>
+	</dependency>  -->
   </dependencies>
 </project>

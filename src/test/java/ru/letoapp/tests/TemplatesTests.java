@@ -11,7 +11,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	String paymentsTitle = "Платежи и переводы";
 
 	@Test(priority = 1)
-	public void auth(){		
+	public void auth() throws Exception{		
 		androidNewVersionPopupHandler();
 		greetingPopupHandler();
         appManager.getAuthScreen().verifyAuthScreen();        
@@ -24,7 +24,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 10, dependsOnMethods = { "auth" } )
-	public void openPaymentsAndTransfersScreenTest(){		
+	public void openPaymentsAndTransfersScreenTest() throws Exception{		
 		appManager.getDashboardScreen().paymentsBtnClik();		
 		Assert.assertFalse(appManager.getPaymentsAndTransfersScreen().getTemplatesTab().isLoadingErrorExist(), "Payments and transfers tab: Loading ERROR");   
 		appManager.getPaymentsAndTransfersScreen().verify();
@@ -32,7 +32,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 20, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
-	public void addRemoveFavoriteTemplateTest(){	
+	public void addRemoveFavoriteTemplateTest() throws Exception{	
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().addToFavoriteBtnClick(PropertyReader.getProperty("existingTemplateName"));
 		appManager.getPaymentsAndTransfersScreen().navUpBtnClick();	 
 		appManager.getDashboardScreen().menuBtnClick();
@@ -48,7 +48,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 30, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
-	public void renameTemplateTest(){
+	public void renameTemplateTest() throws Exception{
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().openTemplateContextMenu(PropertyReader.getProperty("existingTemplateName"));
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().getTemplateContextMenu().renameBtnClick();
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().getEditDisplayNamePopup().editDisplayName(PropertyReader.getProperty("newNameForExistingTemplate"));
@@ -64,7 +64,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 40, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
-	public void createTemplateTest(){
+	public void createTemplateTest() throws Exception{
 		appManager.getPaymentsAndTransfersScreen().paymentsTabBtnClick();
 		appManager.getPaymentsAndTransfersScreen().getPaymentsTab().categoryClick(PropertyReader.getProperty("paymentCategory"));		
 		appManager.getPaymentsAndTransfersScreen().getPaymentsTab().flickPaymentsListDown();
@@ -101,7 +101,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 50, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
-	public void payWithTemplateTest(){	
+	public void payWithTemplateTest() throws Exception{	
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().payWithTemplate(PropertyReader.getProperty("createdTemplate"));
 		Assert.assertFalse(appManager.getPaymentsAndTransfersScreen().getTemplatesTab().isErrorPopupDisplayed(), "Templates tab: Error popup displayed");
 		appManager.getAccountInfoScreen().verify();
@@ -128,7 +128,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 	}
 	
 	@Test(priority = 60, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
-	public void deleteTemplateTest(){
+	public void deleteTemplateTest() throws Exception{
 		incorrectScreenHandler(paymentsTitle);
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().openTemplateContextMenu("beeline");
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().getTemplateContextMenu().deleteBtnClick();

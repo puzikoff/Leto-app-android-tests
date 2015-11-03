@@ -1,12 +1,14 @@
 package ru.letoapp;
 
 
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.AfterSuite;
 
 import ru.letoapp.AppManager;
+import ru.letoapp.utilities.BaseHTMLReporter;
 import ru.letoapp.utilities.PropertyReader;
 
 public class SetUpForEachTestBase extends TestBase{
@@ -21,16 +23,17 @@ public class SetUpForEachTestBase extends TestBase{
 	}
 			
 	@BeforeMethod	   
-	public void setUpMethod() throws Exception	
+	public void setUpMethod(final ITestContext context) throws Exception	
 	{			
 		appManager = new AppManager();	 
-		PropertyReader.init("/testconfig.properties");	
+		PropertyReader.init("testconfig.properties");	
 	    appManager.initDriver(PropertyReader.getProperty("appUnderTestId"), 
 	    					  PropertyReader.getProperty("serverUrl"), 
 	    					  Boolean.valueOf(PropertyReader.getProperty("emulator"))); 
 	    appManager.init();
 	    environoment = PropertyReader.getProperty("environoment");
 	    PropertyReader.init("/" + environoment + "Account.properties");
+	    context.setAttribute(BaseHTMLReporter.DRIVER_ATTRIBUTE, appManager.getDriver());	
 	}	
 	
 	@AfterMethod
