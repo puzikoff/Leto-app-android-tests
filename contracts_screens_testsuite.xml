@@ -16,22 +16,22 @@
       <class name="ru.letoapp.tests.PreclosedLoanScreensTest"/>
     </classes>
   </test> -->
-  <test name="Open deposit screens test">
+<!--  <test name="Open deposit screens test">
     <classes>     
       <class name="ru.letoapp.tests.OpenDepositScreensTest"/>
     </classes>
-  </test>
+  </test> -->
    <test name="Closed deposit screens test">
     <classes>     
       <class name="ru.letoapp.tests.ClosedDepositScreensTest"/>
     </classes>
   </test>
-<!--   <test name="Canceled deposit screens test">
+  <test name="Canceled deposit screens test">
     <classes>     
       <class name="ru.letoapp.tests.CanceledDepositScreensTest"/>
     </classes>
-  </test> -->
- <test name="Wallet with not zero amount screens test">
+  </test> 
+<!--  <test name="Wallet with not zero amount screens test">
     <classes>     
       <class name="ru.letoapp.tests.NotZeroWalletScreensTest"/>
     </classes>
@@ -40,5 +40,5 @@
     <classes>     
       <class name="ru.letoapp.tests.ZeroWalletScreensTest"/>
     </classes>
-  </test>  
+  </test> -->  
 </suite> 

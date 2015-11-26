@@ -63,7 +63,7 @@ public class TemplatesTests extends SetUpForSuiteBase{
 		Assert.assertTrue(appManager.getPaymentsAndTransfersScreen().getTemplatesTab().isTemplateExist(PropertyReader.getProperty("existingTemplateName")));
 	}
 	
-	@Test(priority = 40, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
+/*	@Test(priority = 40, dependsOnMethods = { "openPaymentsAndTransfersScreenTest" } )
 	public void createTemplateTest() throws Exception{
 		appManager.getPaymentsAndTransfersScreen().paymentsTabBtnClick();
 		appManager.getPaymentsAndTransfersScreen().getPaymentsTab().categoryClick(PropertyReader.getProperty("paymentCategory"));		
@@ -133,5 +133,5 @@ public class TemplatesTests extends SetUpForSuiteBase{
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().openTemplateContextMenu("beeline");
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().getTemplateContextMenu().deleteBtnClick();
 		appManager.getPaymentsAndTransfersScreen().getTemplatesTab().getTemplateDeleteConfirmationPopup().yesBtnClick();		 
-	}
+	}*/
 }

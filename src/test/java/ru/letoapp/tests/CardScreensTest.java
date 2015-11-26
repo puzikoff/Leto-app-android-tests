@@ -175,13 +175,13 @@ public class CardScreensTest extends SetUpForSuiteBase{
 	    appManager.getCardScreen().getCardManagementTab().verify();
 	}
 	
-	@Test(enabled = false, priority = 115, dependsOnMethods = { "openCardTest" })
+//	@Test(enabled = false, priority = 115, dependsOnMethods = { "openCardTest" })
 	public void blockFundsFromManagementTabTest() throws Exception {
 	    appManager.getCardScreen().getCardManagementTab().blockFundsSwitchClick();
 	    Assert.assertFalse(appManager.getCardScreen().isErrorPopupDisplayed(), "Card screen, turn on block funds: Error popup displayed");
 	}
 	
-	@Test(enabled = false, priority = 120, dependsOnMethods = { "openCardTest" })
+//	@Test(enabled = false, priority = 120, dependsOnMethods = { "openCardTest" })
 	public void unblockFundsFromManagementTabTest() throws Exception {
 	    appManager.getCardScreen().getCardManagementTab().blockFundsSwitchClick();
 	    Assert.assertFalse(appManager.getCardScreen().isErrorPopupDisplayed(), "Card screen, turn on block funds: Error popup displayed");
@@ -193,7 +193,7 @@ public class CardScreensTest extends SetUpForSuiteBase{
 		appManager.getHowWorksBlockFundsScreen().verify();
 	}
 	
-	@Test(priority = 135, dependsOnMethods = { "openCardTest" })
+//	@Test(priority = 135, dependsOnMethods = { "openCardTest" })
 	public void changePaymentDateTest() throws Exception {
 		incorrectScreenHandler(cardScreenTitle);
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Меняю дату платежа");

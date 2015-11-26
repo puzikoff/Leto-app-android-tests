@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ru.letoapp</groupId>
-  <artifactId>app-tests</artifactId>
+  <artifactId>Leto-app-android-tests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Leto Bank Application Tests</name> 
   <build>
@@ -41,10 +41,10 @@
                 		</properties>       				    
        		  		    <!-- <suiteXmlFiles>
            					<suiteXmlFile>contracts_screens_testsuite.xml</suiteXmlFile>
-         				</suiteXmlFiles> --> 
+         				</suiteXmlFiles> -->  
           				<suiteXmlFiles> 
            					<suiteXmlFile>testng.xml</suiteXmlFile>
-         				</suiteXmlFiles>                    	     				
+         				</suiteXmlFiles>                     	     				
 			       </configuration>    				
      			</plugin>
 				<plugin>

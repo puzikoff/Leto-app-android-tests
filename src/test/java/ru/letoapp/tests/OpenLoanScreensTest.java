@@ -68,7 +68,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getWhatIfScreen().verifyLoanWhatIfScreen();
 	}
 	
-	@Test(priority = 32, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 32, dependsOnMethods = { "openLoanTest" })
 	public void openPartRepaymentScreenTest() throws Exception {
 		appManager.getWhatIfScreen().payMoreClick();		
 		Assert.assertFalse(appManager.getWhatIfScreen().isErrorPopupDisplayed(), "Loan screen, what if screen: error opening part repayment screen");
@@ -85,7 +85,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
 		appManager.getPartRepaymentScreen().verifyPartRepaymentSecondStep();
 	}
 	
-	@Test(priority = 33, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 33, dependsOnMethods = { "openLoanTest" })
 	public void openFullRepaymentTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);	    
 		appManager.getWhatIfScreen().payMoreWidgetClick();
@@ -100,7 +100,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getFullRepaymentScreen().verifyFullRepaymentSecondStep();
 	}
 	
-	@Test(priority = 34, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 34, dependsOnMethods = { "openLoanTest" })
 	public void openSkipPaymentFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().payAllWidgetClick();       
@@ -109,7 +109,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getSkipPaymentScreen().verify();        
 	}
 	
-	@Test(priority = 35, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 35, dependsOnMethods = { "openLoanTest" })
 	public void openReducePaymentFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().skipPaymentWidgetClick();       
@@ -118,7 +118,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getReducePaymentScreen().verify();        
 	}       
 	
-	@Test(priority = 36, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 36, dependsOnMethods = { "openLoanTest" })
 	public void openChangePaymentDateFromWhatIfScreenTest() throws Exception {
 		incorrectScreenHandler(whatIfScreenTitle);
 		appManager.getWhatIfScreen().reducePaymentWidgetClick();       
@@ -207,14 +207,14 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getLoanScreen().getLoanManagementTab().verify();
 	}
 	
-	@Test(priority = 120, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 120, dependsOnMethods = { "openLoanTest" })
 	public void openSkipPaymentTest() throws Exception {		
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Пропускаю платёж");
         Assert.assertFalse(appManager.getLoanScreen().getLoanManagementTab().isErrorPopupDisplayed(), "Loan screen, management tab: Error openning skip paymnet");
         appManager.getSkipPaymentScreen().verify();
 	}
 	
-	@Test(priority = 130, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 130, dependsOnMethods = { "openLoanTest" })
 	public void openChangePaymentDateTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Меняю дату платежа");
@@ -226,7 +226,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         
 	}
 	
-	@Test(priority = 140, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 140, dependsOnMethods = { "openLoanTest" })
 	public void openReducePaymentServiceScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Уменьшаю платёж");        
@@ -234,7 +234,7 @@ public class OpenLoanScreensTest extends SetUpForSuiteBase{
         appManager.getReducePaymentScreen().verify();
 	}
 	
-	@Test(priority = 150, dependsOnMethods = { "openLoanTest" })
+//	@Test(priority = 150, dependsOnMethods = { "openLoanTest" })
 	public void openEarlyRepaymentScreenTest() throws Exception {
 		incorrectScreenHandler(loanScreenTitle);	
 		appManager.getLoanScreen().getLoanManagementTab().serviceDetailsClick("Досрочное погашение");        

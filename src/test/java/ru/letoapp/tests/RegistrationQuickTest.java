@@ -12,9 +12,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase{
 	@Test(priority=1, description = "REGISTRATION BY ACCOUNT TEST")
 	public void registrationByAccountTest() throws Exception {
 		Log.info("REGISTRATION BY ACCOUNT QUICK TEST STARTS");		 
-		Log.info("Auth screen");
-		androidNewVersionPopupHandler();
-		greetingPopupHandler();
+		Log.info("Auth screen");		
 		chooseEnvironoment(environoment);     
         appManager.getAuthScreen().registerBtnClick();       
         Log.info("Dbo screen");
@@ -48,7 +46,18 @@ public class RegistrationQuickTest extends SetUpForEachTestBase{
         appManager.getSetPasswordScreen().nextBtnClick();        
         Assert.assertFalse(appManager.getSetPasswordScreen().isErrorPopupDisplayed(), "Set password screen: Error popup displayed");        
         Log.info("Set security code screen");
-        appManager.getSecurityCodeScreen().dismissBtnClick();      
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");
+        Log.info("Confirm security code screen");
+        appManager.getSecurityCodeScreen().clickNumber("1");
+        appManager.getSecurityCodeScreen().clickNumber("2");
+        appManager.getSecurityCodeScreen().clickNumber("3");
+        appManager.getSecurityCodeScreen().clickNumber("4");   
+        if(appManager.getSecurityCodeScreen().isWaitPopupDisplayed()) {
+        	appManager.getSecurityCodeScreen().waitForVanishWaitPopup();
+        }    
         Assert.assertFalse(appManager.getSecurityCodeScreen().isErrorPopupDisplayed(), "Security code screen: Error popup displayed");
         Log.info("Dashboard screen");        
         appManager.getDashboardScreen().waitForVanishUpdateSpiner();
