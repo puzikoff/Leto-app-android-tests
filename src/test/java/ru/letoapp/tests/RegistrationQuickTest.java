@@ -33,14 +33,8 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		// appManager.getSmsCodeScreen().sendSmsAgainBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
-				"Sms code screen: Error popup displayed");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+				"Sms code screen: Error popup displayed");	
+		appManager.getSmsCodeScreen().enterSmsCode(CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),

@@ -65,13 +65,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 				.isEmptySmsCodePopupDisplayed());
 		appManager.getSmsCodeScreen().getEmptySmsCodePopup().verifyPopup();
 		appManager.getSmsCodeScreen().getEmptySmsCodePopup().nextBtnClick();
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -147,14 +142,9 @@ public class RegistrationTests extends SetUpForEachTestBase {
 		Assert.assertFalse(appManager.getAccountCredentialsScreen()
 				.isErrorPopupDisplayed(),
 				"Account credentials screen: Error popup displayed");
-		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		Log.info("SMS code screen");	
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -211,13 +201,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 		Log.info("Dbo screen");
 		appManager.getDboScreen().acceptLicenseTerms();
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -272,13 +257,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 		Log.info("Dbo screen");
 		appManager.getDboScreen().acceptLicenseTerms();
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -334,13 +314,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 				.isErrorPopupDisplayed(),
 				"Forgot account or access code screen: Error popup displayed");
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -396,13 +371,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 				.isErrorPopupDisplayed(),
 				"Forgot card number or access code screen: Error popup displayed");
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -464,13 +434,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 		Log.info("Dbo screen");
 		appManager.getDboScreen().acceptLicenseTerms();
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -532,13 +497,8 @@ public class RegistrationTests extends SetUpForEachTestBase {
 		Log.info("Dbo screen");
 		appManager.getDboScreen().acceptLicenseTerms();
 		Log.info("SMS code screen");
-		if (environoment.equals("mtest")) {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					CodeReader.getCodeFromFile("sms", environoment));
-		} else {
-			appManager.getSmsCodeScreen().enterSmsCode(
-					PropertyReader.getProperty("SmsCode"));
-		}
+		appManager.getSmsCodeScreen().enterSmsCode(
+				CodeReader.getCodeFromFile("sms", environoment));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
