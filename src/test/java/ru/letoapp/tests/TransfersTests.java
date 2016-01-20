@@ -47,20 +47,13 @@ public class TransfersTests extends SetUpForSuiteBase {
 
 	@Test(priority = 20, dependsOnMethods = { "openTransferToBudgetScreenTest" })
 	public void transferToBudgetTest() throws Exception {
-		appManager.getTransferScreen().fillField("ИНН отправителя",
-				"290121228771");
-		appManager.getTransferScreen().fillField(
-				"Наименование получателя (16)", "TSG");
-		appManager.getTransferScreen().fillField("ИНН получателя (51)",
-				"7811458820");
-		appManager.getTransferScreen().fillField("КПП получателя (103)",
-				"781101001");
-		appManager.getTransferScreen().fillField("БИК банка-получателя",
-				"044030809");
-		appManager.getTransferScreen()
-				.waitForVanishCommissionRecalculateSpiner();
-		appManager.getTransferScreen().fillField("Номер счета получателя",
-				"40703810801055500169");
+		appManager.getTransferScreen().fillField("ИНН отправителя","290121228771");
+		appManager.getTransferScreen().fillField("Наименование получателя (16)", "TSG");
+		appManager.getTransferScreen().fillField("ИНН получателя (51)", "7811458820");
+		appManager.getTransferScreen().fillField("КПП получателя (103)","781101001");
+		appManager.getTransferScreen().fillField("БИК банка-получателя","044030809");
+		appManager.getTransferScreen().waitForVanishCommissionRecalculateSpiner();
+		appManager.getTransferScreen().fillField("Номер счета получателя","40703810801055500169");
 		appManager.getTransferScreen().fillField("КБК (104)", "0");
 		appManager.getTransferScreen().fillField("ОКТМО (105)", "0");
 		appManager.getTransferScreen().fillField("УИН (22)", "0");

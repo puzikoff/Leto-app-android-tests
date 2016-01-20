@@ -34,7 +34,9 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
 				"Sms code screen: Error popup displayed");	
-		appManager.getSmsCodeScreen().enterSmsCode(CodeReader.getCodeFromFile("sms", environoment));
+		appManager.getSmsCodeScreen().enterSmsCode(CodeReader.getCodeFromFile(PropertyReader.getProperty("registrationOtpFromFile"), 
+				PropertyReader.getProperty("registrationOtpMask"), 
+				PropertyReader.getProperty("registrationOtp")));
 		appManager.getSmsCodeScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSmsCodeScreen()
 				.isErrorPopupDisplayed(),
@@ -59,12 +61,9 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		appManager.getSecurityCodeScreen().clickNumber("1");
 		appManager.getSecurityCodeScreen().clickNumber("2");
 		appManager.getSecurityCodeScreen().clickNumber("3");
-		appManager.getSecurityCodeScreen().clickNumber("4");
+		appManager.getSecurityCodeScreen().clickNumber("4"); 
 		Log.info("Confirm security code screen");
-		appManager.getSecurityCodeScreen().clickNumber("1");
-		appManager.getSecurityCodeScreen().clickNumber("2");
-		appManager.getSecurityCodeScreen().clickNumber("3");
-		appManager.getSecurityCodeScreen().clickNumber("4");
+		appManager.getSecurityCodeScreen().enterSecurityCode("1234");
 		if (appManager.getSecurityCodeScreen().isWaitPopupDisplayed()) {
 			appManager.getSecurityCodeScreen().waitForVanishWaitPopup();
 		}
