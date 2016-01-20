@@ -19,7 +19,8 @@ public class SetUpForSuiteBase extends TestBase {
 		appManager = new AppManager();
 		appManager.startServer(PropertyReader.getProperty("appPath"),
 				Boolean.valueOf(PropertyReader.getProperty("forceReinstall")),
-				Boolean.valueOf(PropertyReader.getProperty("noClearData")));
+				Boolean.valueOf(PropertyReader.getProperty("noClearData")),
+				Boolean.valueOf(PropertyReader.getProperty("deviceLog")));
 	}
 
 	@BeforeClass
@@ -28,7 +29,8 @@ public class SetUpForSuiteBase extends TestBase {
 		appManager = new AppManager();
 		appManager.startServer(PropertyReader.getProperty("appPath"),
 				Boolean.valueOf(PropertyReader.getProperty("forceReinstall")),
-				Boolean.valueOf(PropertyReader.getProperty("noClearData")));
+				Boolean.valueOf(PropertyReader.getProperty("noClearData")),
+				Boolean.valueOf(PropertyReader.getProperty("deviceLog")));
 		appManager.initDriver(PropertyReader.getProperty("appUnderTestId"),
 				PropertyReader.getProperty("serverUrl"),
 				Boolean.valueOf(PropertyReader.getProperty("emulator")));

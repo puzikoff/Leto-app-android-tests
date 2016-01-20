@@ -17,7 +17,8 @@ public class SetUpForEachTestBase extends TestBase {
 		appManager = new AppManager();
 		appManager.startServer(PropertyReader.getProperty("appPath"),
 				Boolean.valueOf(PropertyReader.getProperty("forceReinstall")),
-				Boolean.valueOf(PropertyReader.getProperty("noClearData")));
+				Boolean.valueOf(PropertyReader.getProperty("noClearData")),
+				Boolean.valueOf(PropertyReader.getProperty("deviceLog")));
 	}
 
 	@BeforeMethod
