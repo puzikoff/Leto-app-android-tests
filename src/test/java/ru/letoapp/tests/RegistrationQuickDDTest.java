@@ -1,16 +1,65 @@
 package ru.letoapp.tests;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import ru.letoapp.SetUpForEachTestBase;
 import ru.letoapp.utilities.PropertyReader;
 import ru.letoapp.utilities.CodeReader;
 
-public class RegistrationQuickTest extends SetUpForEachTestBase {	  
+public class RegistrationQuickDDTest extends SetUpForEachTestBase {
+	
+	public String[][] getTestDataFromXlsxFile() throws Exception{
+		String path = "src/main/resources/TestData.xlsx";
+	    String[][] dataList = new String[2][2];       
+	    FileInputStream fis = null;             
+	    try {
+	    	fis = new FileInputStream(new File(path));
+	        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+	        XSSFSheet sheet = workbook.getSheet("TestData");
+	        Iterator<Row> rows = sheet.rowIterator();  	        
+	        if (rows.hasNext()) {
+                rows.next();
+	        }
+	        for(int i = 0; rows.hasNext(); ++i)
+	        {
+	        	XSSFRow row = ((XSSFRow) rows.next());
+	            Iterator<Cell> cells = row .cellIterator();	               
+	            for (int j =0; cells.hasNext(); ++j) 
+	            {
+	            	XSSFCell cell = (XSSFCell) cells.next();
+	                String value = cell.getStringCellValue();
+	                if(!value.equals(null)) {	                	
+	                    dataList[i][j] = value;	                        
+	                }
+	            }	              
+	         }
+	     }
+	     catch (Exception e) {
+	    	 e.printStackTrace();
+	     }	   
+	     return dataList;
+	 }
+	 
+	@DataProvider(name = "AccountRegistrationTestData")
+	public String[][] createData() throws Exception{
+		String[][] retObjArr = getTestDataFromXlsxFile();
+		return(retObjArr);
+	}
 
-	@Test(priority = 1, description = "REGISTRATION BY ACCOUNT TEST")
-	public void registrationByAccountTest() throws Exception {
+	@Test(priority = 1, description = "REGISTRATION BY ACCOUNT TEST", dataProvider = "AccountRegistrationTestData")
+	public void registrationByAccountTest(String crm, String account) throws Exception {
 		Log.info("REGISTRATION BY ACCOUNT QUICK TEST STARTS");
 		Log.info("Auth screen");
 		chooseEnvironoment(environoment);
@@ -20,8 +69,8 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		Log.info("Registration method screen");
 		appManager.getRegistrationMethodScreen().chooseAccount();
 		Log.info("Account credentials screen");
-		appManager.getAccountCredentialsScreen().enterAccountNumber(
-				PropertyReader.getProperty("CorrectAccountNumber"));
+		account = account.substring(1);
+		appManager.getAccountCredentialsScreen().enterAccountNumber(account);
 		appManager.getAccountCredentialsScreen().enterAccessCode(
 				PropertyReader.getProperty("CorrectAccountAccessCode"));
 		appManager.getAccountCredentialsScreen().NextBtnClick();
@@ -43,7 +92,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 				"Sms code screen: Error popup displayed");
 		Log.info("Set login screen");
 		appManager.getSetLoginScreen().enterLogin(
-				"u" + PropertyReader.getProperty("crmclientid"));
+				"u" + crm);
 		appManager.getSetLoginScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSetLoginScreen()
 				.isErrorPopupDisplayed(),
@@ -78,7 +127,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		Log.info("END OF TEST");
 	}
 
-	@Test(priority = 2, description = "AUTH AFTER REGISTRATION TEST", dependsOnMethods = { "registrationByAccountTest" })
+	@Test(enabled = false, priority = 2, description = "AUTH AFTER REGISTRATION TEST", dependsOnMethods = { "registrationByAccountTest" })
 	public void authTest() throws Exception {
 		Log.info("AUTH QUICK TEST STARTS");
 		greetingPopupHandler();
