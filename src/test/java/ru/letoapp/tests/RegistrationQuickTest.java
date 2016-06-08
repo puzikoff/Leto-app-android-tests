@@ -20,8 +20,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 		Log.info("Registration method screen");
 		appManager.getRegistrationMethodScreen().chooseAccount();
 		Log.info("Account credentials screen");
-		appManager.getAccountCredentialsScreen().enterAccountNumber(
-				PropertyReader.getProperty("CorrectAccountNumber"));
+		appManager.getAccountCredentialsScreen().enterAccountNumber(PropertyReader.getProperty("CorrectAccountNumber"));
 		appManager.getAccountCredentialsScreen().enterAccessCode(
 				PropertyReader.getProperty("CorrectAccountAccessCode"));
 		appManager.getAccountCredentialsScreen().NextBtnClick();
@@ -43,7 +42,7 @@ public class RegistrationQuickTest extends SetUpForEachTestBase {
 				"Sms code screen: Error popup displayed");
 		Log.info("Set login screen");
 		appManager.getSetLoginScreen().enterLogin(
-				"u" + PropertyReader.getProperty("crmclientid"));
+				"U" + PropertyReader.getProperty("crmclientid"));
 		appManager.getSetLoginScreen().nextBtnClick();
 		Assert.assertFalse(appManager.getSetLoginScreen()
 				.isErrorPopupDisplayed(),

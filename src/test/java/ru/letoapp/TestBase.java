@@ -13,7 +13,7 @@ public class TestBase {
 	public String environoment;
 	protected AppManager appManager;
 
-	public void chooseEnvironoment(String env) throws Exception {
+	public void chooseEnvironoment(String env){
 		if (env.equals("sb")) {
 			Log.info("Choose SB environoment");
 			androidNewVersionPopupHandler();
@@ -95,20 +95,20 @@ public class TestBase {
 			Log.error("Incorrect environoment value: " + env);
 	}
 
-	public void greetingPopupHandler() throws Exception {
+	public void greetingPopupHandler(){
 		if (appManager.getAuthScreen().isGreetingMessageDisplayed()) {
 			appManager.getAuthScreen().getGreetingPopup().verifyGreeting();
 			appManager.getAuthScreen().getGreetingPopup().nextBtnClick();
 		}
 	}
 
-	public void androidNewVersionPopupHandler() throws Exception {
+	public void androidNewVersionPopupHandler() {
 		if (appManager.getAuthScreen().isAndroidPopupDisplayed()) {
 			appManager.getAuthScreen().getAndroidPopup().dismissClick();
 		}
 	}
 
-	public void protectCodeCheckboxUnckeck() throws Exception {
+	public void protectCodeCheckboxUnckeck(){
 		if (appManager.getAuthScreen().isProtCodeCheckboxSelected()) {
 			appManager.getAuthScreen().setProtCodeCheckbox();
 		}
